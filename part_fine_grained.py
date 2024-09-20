@@ -42,16 +42,14 @@ data_transforms = {
 train_dataset_full = CarPartsDataset(txt_file='Prog/data/train_test_split/part/train_part_8.txt', root_dir='Prog/data/part', transform=data_transforms['train'])
 test_dataset = CarPartsDataset(txt_file='Prog/data/train_test_split/part/test_part_8.txt', root_dir='Prog/data/part', transform=data_transforms['test'])
 
-# Check dataset
+# Check dataset and define mapping
 check_results = train_dataset_full.create_label_mappings()
 num_makes = len(check_results[0])
 num_models_per_make = check_results[1]
 print("Number of makes in the used dataset:", num_makes)
-print("Number of models for each make label in the used dataset:", num_models_per_make)
+print("Models for each make label in the used dataset:", num_models_per_make)
 make_mapping, model_mapping = train_dataset_full.create_label_mappings()
 model_counts = [len(model_mapping[make]) for make in sorted(make_mapping.keys())]
-print(make_mapping.keys())
-print(train_dataset_full.model_mapping.items())
 print("model counts:", model_counts)
 make_train_distribution= check_class_distribution(train_dataset_full, "make_model")[0]
 model_train_distribution= check_class_distribution(train_dataset_full, "make_model")[4]

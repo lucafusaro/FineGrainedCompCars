@@ -286,9 +286,6 @@ class CarPartsDataset(Dataset):
         sorted_makes = sorted(all_makes)
         make_mapping = {make: idx for idx, make in enumerate(sorted(sorted_makes))}
         
-        print("All makes found:", make_mapping)
-        print("All models found for each make:", model_mapping)
-        
         return make_mapping, model_mapping
 
     def get_label_from_path(self, img_path):

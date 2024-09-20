@@ -16,7 +16,7 @@ class MakeDataset(Dataset):
             image_paths_file (string): Path to the text file with image paths.
             root_dir (string): Directory with all the images.
             labels_dir (string): Directory with all the label text files.
-            transform (callable, optional): Optional transform to be applied on a sample.
+            transform : Optional transform to be applied on a sample.
         """
         # Load image paths from the provided file
         self.image_paths = []
@@ -94,8 +94,8 @@ class MakeDatasetWithAugmentation(MakeDataset):
             image_paths_file (string): Path to the text file with image paths.
             root_dir (string): Directory with all the images.
             labels_dir (string): Directory with all the label text files.
-            transform (callable, optional): Optional transform to be applied on a sample.
-            augment_classes (list, optional): List of class labels that need augmentation.
+            transform: Optional transform to be applied on a sample.
+            augment_classes (list): List of class labels that need augmentation.
         """
         super().__init__(image_paths_file, root_dir, labels_dir, transform)
         self.augment_classes = augment_classes
@@ -127,7 +127,7 @@ class MMdataset(Dataset):
             image_paths_file (string): Path to the text file with image paths.
             root_dir (string): Directory with all the images.
             labels_dir (string): Directory with all the label text files.
-            transform (callable, optional): Optional transform to be applied on a sample.
+            transform: Optional transform to be applied on a sample.
         """
         # Load image paths from the provided file
         self.image_paths = []
@@ -222,8 +222,8 @@ class MMDatasetWithAugmentation(MMdataset):
             image_paths_file (string): Path to the text file with image paths.
             root_dir (string): Directory with all the images.
             labels_dir (string): Directory with all the label text files.
-            transform (callable, optional): Optional transform to be applied on a sample.
-            augment_classes (list, optional): List of class labels that need augmentation.
+            transform: Optional transform to be applied on a sample.
+            augment_classes (list): List of class labels that need augmentation.
         """
         super().__init__(image_paths_file, root_dir, labels_dir, transform)
         self.augment_classes = augment_classes
@@ -254,7 +254,7 @@ class CarPartsDataset(Dataset):
         Args:
             txt_file (string): Path to the txt file with image paths.
             root_dir (string): Directory with all the images.
-            transform (callable, optional): Optional transform to be applied on a sample.
+            transform: Optional transform to be applied on a sample.
         """
         with open(txt_file, 'r') as f:
             self.image_paths = [line.strip() for line in f]
@@ -325,7 +325,7 @@ class VotingDataset(Dataset):
             root_dir (string): Root directory containing all images.
             txt_files (dict): Dictionary mapping car parts (e.g., 'headlight') to their corresponding .txt files containing image paths.
             part_list (list): List of car parts to be used (e.g., ['headlight', 'taillight', 'fog_light']).
-            transform (callable, optional): Optional transform to be applied to each image.
+            transform: Optional transform to be applied to each image.
         """
         self.root_dir = root_dir
         self.txt_files = txt_files

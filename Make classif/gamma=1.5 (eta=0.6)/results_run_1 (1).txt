@@ -1,4 +1,0 @@
-Run 1 - Seed 42
-Overall accuracy: 0.8085
-Balanced accuracy: 0.7190
-Macro F1 Score: 0.7443

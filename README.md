@@ -18,5 +18,6 @@ imbalance_check: Provides a function to inspect the training data distribution, 
 
 metrics: Contains metric functions used across the tasks to evaluate the models' performance.
 
+Results: in this folder there are plots and accuracies results for each task. For make classification with CrossEntropy metric results from three different runs can be found. For car parts classification both results from single car part model and voting strategy are present. 
 
 Note that in the main implementation codes you have to modify the path according to your system to create the dataset. 

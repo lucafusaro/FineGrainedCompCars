@@ -1,0 +1,7 @@
+Make Accuracy: 0.9281
+Make Balanced Accuracy: 0.8073
+Model Accuracy: 0.7198
+Top-3 Model Accuracy: 0.8689
+Mean Balanced Accuracy for Models: 0.7368
+Min Balanced Accuracy: 0.0000
+Max Balanced Accuracy: 1.0000

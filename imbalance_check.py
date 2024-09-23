@@ -35,34 +35,3 @@ def check_class_distribution(dataset, mode="make"):
         make_to_model_count = {make: len(models) for make, models in make_to_models.items()}
         return make_label_counts, num_make_labels_present, make_to_model_count, num_model_labels_present, model_counts_per_make
 
-
-#############################################################
-#Car parts classification
-
-def check_part_class_distribution(dataset_dir):
-    """
-    Checks the distribution of classes (car parts) in the dataset.
-
-    Parameters:
-    - dataset_dir (str): Path to the dataset directory (e.g., 'dataset/train' or 'dataset/test').
-
-    Returns:
-    - class_distribution (Counter): A Counter object containing the count of images for each class.
-    - num_classes_present (int): The number of unique classes present in the dataset.
-    """
-    class_distribution = Counter()
-
-    # Iterate over each class directory in the dataset
-    for class_dir in os.listdir(dataset_dir):
-        class_path = os.path.join(dataset_dir, class_dir)
-        
-        if os.path.isdir(class_path):
-            # Count the number of images in the class directory
-            num_images = len([img for img in os.listdir(class_path) if img.endswith('.jpg')])
-            class_distribution[class_dir] += num_images
-
-    # Count the number of unique classes
-    num_classes_present = len(class_distribution)
-
-    return class_distribution, num_classes_present
-

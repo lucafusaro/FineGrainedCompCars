@@ -270,60 +270,6 @@ def plot_confusion_matrix(y_true, y_pred, part_names, title='Confusion Matrix'):
     plt.savefig('conf_matrix.png')
     plt.close()
 
-####################Car model###################
-"""def overall_accuracy(predicted_makes, predicted_models, true_makes, true_models):
-    correct_make = (predicted_makes == true_makes).sum().item()
-    correct_model = (predicted_models == true_models).sum().item()
-    total = len(true_makes)
-
-    accuracy_make = correct_make / total
-    accuracy_model = correct_model / total
-
-    return accuracy_make, accuracy_model
-
-
-def per_make_model_accuracy(predicted_makes, predicted_models, true_makes, true_models):
-    accuracy_dict = {}
-    for make in set(true_makes.cpu().numpy()):
-        make_indices = (true_makes == make)
-        correct_predictions = (predicted_models[make_indices] == true_models[make_indices]).sum().item()
-        total_predictions = make_indices.sum().item()
-        accuracy = correct_predictions / total_predictions if total_predictions > 0 else 0
-        accuracy_dict[make] = accuracy
-    return accuracy_dict
-
-
-
-def confusion_matrix_per_make(predicted_makes, predicted_models, true_makes, true_models):
-    confusion_matrices = {}
-    for make in set(true_makes.cpu().numpy()):
-        make_indices = (true_makes == make)
-        cm = confusion_matrix(true_models[make_indices].cpu().numpy(), 
-                              predicted_models[make_indices].cpu().numpy(), 
-                              labels=list(range(num_models_per_make)))
-        confusion_matrices[make] = cm
-    return confusion_matrices
-
-
-
-def precision_recall_f1_per_make(predicted_makes, predicted_models, true_makes, true_models):
-    metrics_dict = {}
-    for make in set(true_makes.cpu().numpy()):
-        make_indices = (true_makes == make)
-        precision = precision_score(true_models[make_indices].cpu().numpy(), 
-                                    predicted_models[make_indices].cpu().numpy(), 
-                                    average='weighted')
-        recall = recall_score(true_models[make_indices].cpu().numpy(), 
-                              predicted_models[make_indices].cpu().numpy(), 
-                              average='weighted')
-        f1 = f1_score(true_models[make_indices].cpu().numpy(), 
-                      predicted_models[make_indices].cpu().numpy(), 
-                      average='weighted')
-        
-        metrics_dict[make] = {'precision': precision, 'recall': recall, 'f1': f1}
-    
-    return metrics_dict
-"""
 
 ############### Car Make-Model fine grained classification ###############
 
@@ -399,18 +345,8 @@ def get_best_worst_models_per_make(true_models, predicted_models, true_makes, se
         true_models_make = true_models[make_indices]
         predicted_models_make = predicted_models[make_indices]
 
-        # Skip this make if there are no true or predicted models for it
-        if len(true_models_make) == 0 or len(predicted_models_make) == 0:
-            print(f"Skipping make {make} due to no true or predicted models.")
-            continue
-
         # Get unique labels that are actually present in true and predicted models
         present_labels = np.unique(np.concatenate([true_models_make, predicted_models_make]))
-
-        # Skip if no present labels are found (to avoid empty confusion matrix)
-        if len(present_labels) == 0:
-            print(f"Skipping make {make} as no present labels are found.")
-            continue
 
         # Compute the confusion matrix using only the present labels
         try:
@@ -502,11 +438,6 @@ def plot_confusion_matrix_best_worst_models(confusion_matrices, best_worst_model
             print(f"No class names found for make {make}. Skipping.")
             continue
 
-        # Check if the confusion matrix is valid
-        if cm is None or cm.size == 0:
-            print(f"Invalid or empty confusion matrix for make {make}. Skipping.")
-            continue
-
         # Adjust the number of models based on availability
         num_combined_models = min(6, len(combined_models))
         selected_models = combined_models[:num_combined_models]
@@ -514,10 +445,6 @@ def plot_confusion_matrix_best_worst_models(confusion_matrices, best_worst_model
         # Ensure selected_models indices are valid
         max_index = cm.shape[0] - 1
         selected_models = [i for i in selected_models if i <= max_index]
-
-        if not selected_models:
-            print(f"No valid model indices for make {make}. Skipping.")
-            continue
         
         model_labels = [class_names[m] for m in selected_models]
 

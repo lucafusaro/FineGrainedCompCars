@@ -2,7 +2,7 @@ This repository contains the code for various implementations related to the car
 
 make_main: Implements the car make classification task using the CrossEntropy loss function.
 
-make_focal_main: Similar to make_main, but uses the Focal Loss function with additional augmentations applied to underrepresented classes, as described in the report.
+make_focal_main: Similar to make_main, but uses the Focal Loss function with additional augmentations applied to underrepresented classes.
 
 fine_grained: Implements the car make-model classification task. Certain lines are commented out, depending on whether CrossEntropy or Focal Loss is used.
 

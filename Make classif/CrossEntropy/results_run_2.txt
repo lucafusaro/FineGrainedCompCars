@@ -1,0 +1,4 @@
+Run 2 - Seed 123
+Overall accuracy: 0.9264
+Balanced accuracy: 0.8652
+Macro F1 Score: 0.8817

@@ -1,0 +1,3 @@
+Mean Overall Accuracy: 0.9074 ± 0.0137
+Mean Balanced Accuracy: 0.8492 ± 0.0125
+Mean Macro F1 Score: 0.8652 ± 0.0129

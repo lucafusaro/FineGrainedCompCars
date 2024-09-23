@@ -13,4 +13,6 @@ Here a short explanation of the content of the file:
 
 'custom_dataset contains the function to create the dataset used for each task.
 
-'dataset_utility' contains some functions used in th
+'dataset_utility' contains some functions that can be used in the main implemantaion to plot examples of the used images.
+
+'imbalance_check' contains various functions used to check the train ditribution so the number of make and models classes, number of samples

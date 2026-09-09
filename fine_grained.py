@@ -98,7 +98,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = model.to(device)
 
 # Load pretrained weights for make classification
-pretrained_weights = torch.load('best_checkpoint_run_1.pt')
+pretrained_weights = torch.load('best_checkpoint_make.pt', map_location=device)
 # Filter out the fc layer weights (since we don't need them)
 pretrained_weights = {k: v for k, v in pretrained_weights.items() if 'fc' not in k}
 model.resnet.load_state_dict(pretrained_weights)

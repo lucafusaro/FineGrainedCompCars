@@ -116,7 +116,7 @@ def run(seed):
     focal_loss = FocalLoss(alpha=alpha, gamma=1.5).to(device)
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(eta_min=0.0001, optimizer=optimizer, T_max=5)
-    early_stopping = EarlyStopping(patience=5, path=f'best_checkpoint.pt')
+    early_stopping = EarlyStopping(patience=5, path='best_checkpoint_make_focal.pt')
     
     print(f"Running model with seed {seed}")
     # Train the model
@@ -125,11 +125,11 @@ def run(seed):
     )
     
     # Plotting loss/accuracy
-    plot_loss_accuracy_curves(train_losses, val_losses, train_accuracies, val_accuracies, run_index)
+    plot_loss_accuracy_curves(train_losses, val_losses, train_accuracies, val_accuracies, seed)
 
     # Save the model for this run
     
-    model.load_state_dict(torch.load(f'best_checkpoint_make_focal.pt'))
+    model.load_state_dict(torch.load('best_checkpoint_make_focal.pt', map_location=device))
     model.to(device)
     # Evaluate the model on the test set
     model.eval()
@@ -147,7 +147,7 @@ def run(seed):
     class_names = [str(label) for label in sorted(train_distribution.keys())]
     
     # Compute Overall Metrics
-    overall_accuracy, balanced_acc, macro_f1 = evaluate_model(all_labels, all_preds, class_names, num_classes, run_index=run_index)
+    overall_accuracy, balanced_acc, macro_f1 = evaluate_model(all_labels, all_preds, class_names, num_classes, run_index=seed)
 
     # Confusion matrix for the n best classes and n worst classes
     plot_confusion_matrix_best_worst(all_labels, all_preds, class_names, top_n=3)

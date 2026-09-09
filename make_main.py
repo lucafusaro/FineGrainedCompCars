@@ -116,7 +116,7 @@ def run(seed):
     plot_loss_accuracy_curves(train_losses, val_losses, train_accuracies, val_accuracies)
 
     #Evaluation
-    model.load_state_dict(torch.load(f'best_checkpoint_make.pt'))
+    model.load_state_dict(torch.load('best_checkpoint_make.pt', map_location=device))
     model.to(device)
     # Evaluate the model on the test set
     model.eval()

@@ -1,13 +1,3 @@
-# Install a PyTorch build compatible with your operating system and CUDA setup.
-# See https://pytorch.org/get-started/locally/ if the default pip build is unsuitable.
-torch>=2.1
-torchvision>=0.16
-
-numpy>=1.24
-pandas>=2.0
-Pillow>=10.0
-scikit-learn>=1.3
-matplotlib>=3.7
-seaborn>=0.13
-tqdm>=4.66
-torchsummary>=1.5.1
+# Installs the project and its dependencies from pyproject.toml.
+# Choose a CUDA-compatible PyTorch build first if the default pip build is unsuitable.
+-e .
